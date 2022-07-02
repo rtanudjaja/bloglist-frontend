@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import Blog from './components/Blog'
 import Login from './components/Login'
+import CreateForm from './components/CreateForm'
 import blogService from './services/blogs'
 
 const App = () => {
@@ -37,6 +38,7 @@ const App = () => {
         window.localStorage.removeItem('loggedNoteappUser')
         setUser(null)
       }}>logout</button></p>
+      <CreateForm blogs={blogs} setBlogs={setBlogs} />
       {blogs.map(blog =>
         <Blog key={blog.id} blog={blog} />
       )}
