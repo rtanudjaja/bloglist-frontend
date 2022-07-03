@@ -69,6 +69,11 @@ const App = () => {
     setBlogs(blogs.filter(n => n.id !== blog.id).concat(returnedBlog)) 
   }
 
+  const remove = async (blog) => {
+    await blogService.remove(blog.id)
+    setBlogs(blogs.filter(n => n.id !== blog.id)) 
+  }
+
   if (user === null) {
     return (
       <>
@@ -90,7 +95,7 @@ const App = () => {
         <CreateForm addBlog={addBlog} />
       </Togglable>
       {blogs.sort((a,b) => b.likes - a.likes).map(blog =>
-        <Blog key={blog.id} blog={blog} addLike={addLike} />
+        <Blog key={blog.id} blog={blog} addLike={addLike} remove={remove} />
       )}
     </div>
   )

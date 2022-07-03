@@ -1,7 +1,8 @@
 import { useState } from "react"
 
-const Blog = ({ blog, addLike }) => {
+const Blog = ({ blog, addLike, remove }) => {
   const [showHide, setShowHide] = useState(false)
+  const loggedUsername = JSON.parse(window.localStorage.getItem('loggedBlogappUser')).username || null
   const blogStyle = {
     paddingTop: 10,
     paddingLeft: 2,
@@ -26,6 +27,15 @@ const Blog = ({ blog, addLike }) => {
             like
           </button><br/>
           <span>{blog.author}</span><br/>
+          {blog.user.username === loggedUsername && (
+            <button type="button" style={{ backgroundColor: 'tomato' }} onClick={() => {
+              if (window.confirm(`Remove blog ${blog.title} by ${blog.author}?`)) {
+                remove(blog)
+              }
+            }}>
+              remove
+            </button>
+          )}
         </div>
       )}
   </div>
