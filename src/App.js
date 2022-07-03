@@ -74,7 +74,7 @@ const App = () => {
         window.localStorage.removeItem('loggedNoteappUser')
         setUser(null)
       }}>logout</button></p>
-      <Togglable buttonLabel="new note" ref={createFormRef}>
+      <Togglable buttonLabel="new blog" ref={createFormRef}>
         <CreateForm addBlog={addBlog} />
       </Togglable>
       {blogs.map(blog =>
