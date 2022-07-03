@@ -57,6 +57,18 @@ const App = () => {
       })
   }
 
+  const addLike = async (blog) => {
+    const blogObject = {
+      user: blog.user.id,
+      title: blog.title,
+      author: blog.author,
+      url: blog.url,
+      likes: blog.likes+1,
+    }
+    const returnedBlog = await blogService.like(blog.id, blogObject)
+    setBlogs(blogs.filter(n => n.id !== blog.id).concat(returnedBlog)) 
+  }
+
   if (user === null) {
     return (
       <>
@@ -77,8 +89,8 @@ const App = () => {
       <Togglable buttonLabel="new blog" ref={createFormRef}>
         <CreateForm addBlog={addBlog} />
       </Togglable>
-      {blogs.map(blog =>
-        <Blog key={blog.id} blog={blog} />
+      {blogs.sort((a,b) => b.likes - a.likes).map(blog =>
+        <Blog key={blog.id} blog={blog} addLike={addLike} />
       )}
     </div>
   )
