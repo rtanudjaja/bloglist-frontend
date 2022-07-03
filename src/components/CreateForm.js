@@ -26,15 +26,15 @@ const CreateForm = ({ addBlog }) => {
   return (
     <form onSubmit={handleAddBlog}>
       <h2>create new</h2>
-      <label for="title">title</label>&nbsp;<input
+      <label htmlFor="title">title</label>&nbsp;<input
         value={newTitle}
         onChange={handleTitleChange}
       /><br/>
-      <label for="author">author</label>&nbsp;<input
+      <label htmlFor="author">author</label>&nbsp;<input
         value={newAuthor}
         onChange={handleAuthorChange}
       /><br/>
-      <label for="url">url</label>&nbsp;<input
+      <label htmlFor="url">url</label>&nbsp;<input
         value={newUrl}
         onChange={handleUrlChange}
       /><br/>

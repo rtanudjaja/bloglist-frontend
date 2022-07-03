@@ -1,9 +1,10 @@
 import './index.css'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Blog from './components/Blog'
 import Login from './components/Login'
-import Notification from "./components/Notification";
+import Notification from "./components/Notification"
 import CreateForm from './components/CreateForm'
+import Togglable from './components/Togglable'
 import blogService from './services/blogs'
 
 const App = () => {
@@ -11,15 +12,18 @@ const App = () => {
   const [user, setUser] = useState(null)
   const [successMessage, setSuccessMessage] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
+  const createFormRef = useRef()
 
   useEffect(() => {
-    blogService.getAll().then(blogs =>
-      setBlogs( blogs )
-    )  
+    if (user !== null) {
+      blogService.getAll().then(blogs =>
+        setBlogs( blogs )
+      )
+    }
   }, [user])
 
   useEffect(() => {
-    const loggedUserJSON = window.localStorage.getItem('loggedNoteappUser')
+    const loggedUserJSON = window.localStorage.getItem('loggedBlogappUser')
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON)
       setUser(user)
@@ -43,6 +47,7 @@ const App = () => {
         setTimeout(() => {
           setSuccessMessage(null)
         }, 5000)
+        createFormRef.current.toggleVisibility()
       })
       .catch(() => {
         setErrorMessage(`fail to add blog`)
@@ -69,7 +74,9 @@ const App = () => {
         window.localStorage.removeItem('loggedNoteappUser')
         setUser(null)
       }}>logout</button></p>
-      <CreateForm addBlog={addBlog} />
+      <Togglable buttonLabel="new note" ref={createFormRef}>
+        <CreateForm addBlog={addBlog} />
+      </Togglable>
       {blogs.map(blog =>
         <Blog key={blog.id} blog={blog} />
       )}
