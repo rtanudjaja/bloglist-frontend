@@ -1,13 +1,13 @@
-import { useState } from "react"
-import Notification from "../components/Notification";
+import { useState } from 'react'
+import Notification from '../components/Notification'
 import loginService from '../services/login'
 import blogService from '../services/blogs'
 import PropTypes from 'prop-types'
 
 const Login = ({ setUser, setSuccessMessage }) => {
-  const [username, setUsername] = useState('') 
+  const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const [errorMessage, setErrorMessage] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null)
 
   const handleLogin = async (event) => {
     event.preventDefault()
@@ -37,10 +37,10 @@ const Login = ({ setUser, setSuccessMessage }) => {
   return (
     <form onSubmit={handleLogin}>
       <h2>log in to application</h2>
-      <Notification message={errorMessage} msgStyle={"error"} />
+      <Notification message={errorMessage} msgStyle={'error'} />
       <div>
         username
-          <input
+        <input
           type="text"
           value={username}
           name="Username"
@@ -49,7 +49,7 @@ const Login = ({ setUser, setSuccessMessage }) => {
       </div>
       <div>
         password
-          <input
+        <input
           type="password"
           value={password}
           name="Password"

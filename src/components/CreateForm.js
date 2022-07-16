@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState } from 'react'
 import PropTypes from 'prop-types'
 
 const CreateForm = ({ addBlog }) => {
@@ -40,7 +40,7 @@ const CreateForm = ({ addBlog }) => {
         onChange={handleUrlChange}
       /><br/>
       <button type="submit">save</button>
-    </form>   
+    </form>
   )
 }
 

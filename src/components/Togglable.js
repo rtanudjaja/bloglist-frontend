@@ -15,7 +15,7 @@ const Togglable = forwardRef((props, refs) => {
       toggleVisibility
     }
   })
-  
+
   return (
     <div>
       <div style={hideWhenVisible}>
@@ -28,5 +28,7 @@ const Togglable = forwardRef((props, refs) => {
     </div>
   )
 })
+
+Togglable.displayName = 'Togglable'
 
 export default Togglable

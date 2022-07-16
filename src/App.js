@@ -2,7 +2,7 @@ import './index.css'
 import { useState, useEffect, useRef } from 'react'
 import Blog from './components/Blog'
 import Login from './components/Login'
-import Notification from "./components/Notification"
+import Notification from './components/Notification'
 import CreateForm from './components/CreateForm'
 import Togglable from './components/Togglable'
 import blogService from './services/blogs'
@@ -10,8 +10,8 @@ import blogService from './services/blogs'
 const App = () => {
   const [blogs, setBlogs] = useState([])
   const [user, setUser] = useState(null)
-  const [successMessage, setSuccessMessage] = useState(null);
-  const [errorMessage, setErrorMessage] = useState(null);
+  const [successMessage, setSuccessMessage] = useState(null)
+  const [errorMessage, setErrorMessage] = useState(null)
   const createFormRef = useRef()
 
   useEffect(() => {
@@ -50,7 +50,7 @@ const App = () => {
         createFormRef.current.toggleVisibility()
       })
       .catch(() => {
-        setErrorMessage(`fail to add blog`)
+        setErrorMessage('fail to add blog')
         setTimeout(() => {
           setErrorMessage(null)
         }, 5000)
@@ -66,12 +66,12 @@ const App = () => {
       likes: blog.likes+1,
     }
     const returnedBlog = await blogService.like(blog.id, blogObject)
-    setBlogs(blogs.filter(n => n.id !== blog.id).concat(returnedBlog)) 
+    setBlogs(blogs.filter(n => n.id !== blog.id).concat(returnedBlog))
   }
 
   const remove = async (blog) => {
     await blogService.remove(blog.id)
-    setBlogs(blogs.filter(n => n.id !== blog.id)) 
+    setBlogs(blogs.filter(n => n.id !== blog.id))
   }
 
   if (user === null) {
@@ -85,8 +85,8 @@ const App = () => {
   return (
     <div>
       <h2>blogs</h2>
-      <Notification message={successMessage} msgStyle={"success"} />
-      <Notification message={errorMessage} msgStyle={"error"} />
+      <Notification message={successMessage} msgStyle={'success'} />
+      <Notification message={errorMessage} msgStyle={'error'} />
       <p>{user.name} logged in&nbsp;<button type="button" onClick={() => {
         window.localStorage.removeItem('loggedNoteappUser')
         setUser(null)

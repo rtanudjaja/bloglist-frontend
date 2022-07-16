@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState } from 'react'
 import PropTypes from 'prop-types'
 
 const Blog = ({ blog, addLike, remove }) => {
@@ -17,7 +17,7 @@ const Blog = ({ blog, addLike, remove }) => {
       <span>
         {blog.title} {blog.author}&nbsp;
         <button type="button" onClick={() => setShowHide(!showHide)}>
-          {!showHide ? "view" : "hide"}
+          {!showHide ? 'view' : 'hide'}
         </button>
       </span>
       {showHide && (
@@ -39,8 +39,8 @@ const Blog = ({ blog, addLike, remove }) => {
           )}
         </div>
       )}
-  </div>
-)}
+    </div>
+  )}
 
 Blog.propTypes = {
   blog: PropTypes.object.isRequired,
