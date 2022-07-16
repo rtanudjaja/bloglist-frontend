@@ -2,6 +2,7 @@ import { useState } from "react"
 import Notification from "../components/Notification";
 import loginService from '../services/login'
 import blogService from '../services/blogs'
+import PropTypes from 'prop-types'
 
 const Login = ({ setUser, setSuccessMessage }) => {
   const [username, setUsername] = useState('') 
@@ -58,6 +59,11 @@ const Login = ({ setUser, setSuccessMessage }) => {
       <button type="submit">login</button>
     </form>
   )
+}
+
+Login.propTypes = {
+  setUser: PropTypes.func.isRequired,
+  setSuccessMessage: PropTypes.func.isRequired
 }
 
 export default Login
