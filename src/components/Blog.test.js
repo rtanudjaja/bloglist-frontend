@@ -5,6 +5,8 @@ import Blog from './Blog'
 
 describe('<Blog />', () => {
   let component
+  const addLike = jest.fn()
+  const remove = jest.fn()
   const blog = {
     _id: '5a422aa71b54a676234d17fA',
     title: 'Wings of Fire',
@@ -18,7 +20,7 @@ describe('<Blog />', () => {
   }
 
   beforeEach(() => {
-    component = render(<Blog blog={blog} addLike={() => null} remove={() => null} />)
+    component = render(<Blog blog={blog} addLike={addLike} remove={remove} />)
   })
 
   test('renders blog\'s title and author but not url and number of likes', () => {
@@ -44,6 +46,16 @@ describe('<Blog />', () => {
     expect(authors).toBeDefined()
     expect(url).toBeDefined()
     expect(likes).toBeDefined()
+  })
+
+  test('if the like button is clicked twice, the event handler the component received as props is called twice', () => {
+    const viewButton = component.getByText('view')
+    fireEvent.click(viewButton)
+    const likeButton = component.getByText('like')
+    fireEvent.click(likeButton)
+    expect(addLike.mock.calls).toHaveLength(1)
+    fireEvent.click(likeButton)
+    expect(addLike.mock.calls).toHaveLength(2)
   })
 })
 
