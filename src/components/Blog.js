@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import PropTypes from 'prop-types'
 
-const Blog = ({ blog, addLike, remove }) => {
+const Blog = ({ blog, addLike, remove, user }) => {
   const [showHide, setShowHide] = useState(false)
-  const loggedUsername = JSON.parse(window.localStorage.getItem('loggedBlogappUser')).username || null
+  const loggedUsername = user ? user.username : null
   const blogStyle = {
     paddingTop: 10,
     paddingLeft: 2,
@@ -23,7 +23,7 @@ const Blog = ({ blog, addLike, remove }) => {
       {showHide && (
         <div>
           <span>{blog.url}</span><br/>
-          <span>likes {blog.likes}&nbsp;</span>
+          <span>likes&nbsp;{blog.likes}&nbsp;</span>
           <button type="button" onClick={() => addLike(blog)}>
             like
           </button><br/>
@@ -46,6 +46,7 @@ Blog.propTypes = {
   blog: PropTypes.object.isRequired,
   addLike: PropTypes.func.isRequired,
   remove: PropTypes.func.isRequired,
+  user: PropTypes.object,
 }
 
 export default Blog
