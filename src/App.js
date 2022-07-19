@@ -31,8 +31,7 @@ const App = () => {
     }
   }, [])
 
-  const addBlog = (event, newTitle, newAuthor, newUrl) => {
-    event.preventDefault()
+  const addBlog = (newTitle, newAuthor, newUrl) => {
     const blogObject = {
       title: newTitle,
       author: newAuthor,

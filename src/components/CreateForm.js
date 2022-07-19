@@ -16,12 +16,12 @@ const CreateForm = ({ addBlog }) => {
     setNewUrl(event.target.value)
   }
 
-  const handleAddBlog = (event) => {
-    addBlog(event, newTitle, newAuthor, newUrl).then(() => {
-      setNewTitle('')
-      setNewAuthor('')
-      setNewUrl('')
-    })
+  const handleAddBlog = async (event) => {
+    event.preventDefault()
+    await addBlog(event, newTitle, newAuthor, newUrl)
+    setNewTitle('')
+    setNewAuthor('')
+    setNewUrl('')
   }
 
   return (
