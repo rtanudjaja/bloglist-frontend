@@ -23,10 +23,12 @@ const Blog = ({ blog, addLike, remove, user }) => {
       {showHide && (
         <div>
           <span>{blog.url}</span><br/>
-          <span>likes&nbsp;{blog.likes}&nbsp;</span>
-          <button type="button" onClick={() => addLike(blog)}>
-            like
-          </button><br/>
+          <div>
+            <span>likes&nbsp;{blog.likes}&nbsp;</span>
+            <button id="like-button" type="button" onClick={() => addLike(blog)}>
+              like
+            </button>
+          </div>
           <span>{blog.author}</span><br/>
           {blog.user.username === loggedUsername && (
             <button type="button" style={{ backgroundColor: 'tomato' }} onClick={() => {

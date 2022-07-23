@@ -7,15 +7,15 @@ Cypress.Commands.add('login', ({ username, password }) => {
   })
 })
 
-// Cypress.Commands.add('createNote', ({ content, important }) => {
-//   cy.request({
-//     url: 'http://localhost:3001/api/notes',
-//     method: 'POST',
-//     body: { content, important },
-//     headers: {
-//       'Authorization': `bearer ${JSON.parse(localStorage.getItem('loggedNoteappUser')).token}`
-//     }
-//   })
+Cypress.Commands.add('createBlog', ({ title, author, url, likes = 0 }) => {
+  cy.request({
+    url: 'http://localhost:3003/api/blogs',
+    method: 'POST',
+    body: { title, author, url, likes },
+    headers: {
+      'Authorization': `bearer ${JSON.parse(localStorage.getItem('loggedBlogappUser')).token}`
+    }
+  })
 
-//   cy.visit('http://localhost:3002')
-// })
+  cy.visit('http://localhost:3000')
+})
