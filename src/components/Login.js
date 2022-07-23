@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import Notification from '../components/Notification'
 import loginService from '../services/login'
-import blogService from '../services/blogs'
 import PropTypes from 'prop-types'
 
 const Login = ({ setUser, setSuccessMessage }) => {
@@ -18,7 +17,6 @@ const Login = ({ setUser, setSuccessMessage }) => {
       window.localStorage.setItem(
         'loggedBlogappUser', JSON.stringify(user)
       )
-      blogService.setToken(user.token)
       setUser(user)
       setUsername('')
       setPassword('')
@@ -41,6 +39,7 @@ const Login = ({ setUser, setSuccessMessage }) => {
       <div>
         username
         <input
+          id="username"
           type="text"
           value={username}
           name="Username"
@@ -50,13 +49,14 @@ const Login = ({ setUser, setSuccessMessage }) => {
       <div>
         password
         <input
+          id="password"
           type="password"
           value={password}
           name="Password"
           onChange={({ target }) => setPassword(target.value)}
         />
       </div>
-      <button type="submit">login</button>
+      <button id="login-button" type="submit">login</button>
     </form>
   )
 }

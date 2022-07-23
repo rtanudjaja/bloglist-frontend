@@ -18,7 +18,7 @@ const CreateForm = ({ addBlog }) => {
 
   const handleAddBlog = async (event) => {
     event.preventDefault()
-    await addBlog(event, newTitle, newAuthor, newUrl)
+    await addBlog(newTitle, newAuthor, newUrl)
     setNewTitle('')
     setNewAuthor('')
     setNewUrl('')
@@ -28,18 +28,21 @@ const CreateForm = ({ addBlog }) => {
     <form onSubmit={handleAddBlog}>
       <h2>create new</h2>
       <label htmlFor="title">title</label>&nbsp;<input
+        id="title"
         value={newTitle}
         onChange={handleTitleChange}
       /><br/>
       <label htmlFor="author">author</label>&nbsp;<input
+        id="author"
         value={newAuthor}
         onChange={handleAuthorChange}
       /><br/>
       <label htmlFor="url">url</label>&nbsp;<input
+        id="url"
         value={newUrl}
         onChange={handleUrlChange}
       /><br/>
-      <button type="submit">save</button>
+      <button id="submit-button" type="submit">save</button>
     </form>
   )
 }

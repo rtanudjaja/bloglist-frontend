@@ -19,6 +19,7 @@ const App = () => {
       blogService.getAll().then(blogs =>
         setBlogs( blogs )
       )
+      blogService.setToken(user.token)
     }
   }, [user])
 
@@ -40,7 +41,9 @@ const App = () => {
     }
 
     return blogService.create(blogObject)
-      .then(returnedBlog => setBlogs(blogs.concat(returnedBlog)))
+      .then(() => blogService.getAll().then(blogs =>
+        setBlogs( blogs )
+      ))
       .then(() => {
         setSuccessMessage(`a new blog ${newTitle} by ${newAuthor} added`)
         setTimeout(() => {
